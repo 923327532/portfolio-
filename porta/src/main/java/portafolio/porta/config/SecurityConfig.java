@@ -8,14 +8,17 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.beans.factory.annotation.Value; // ¡Importante para leer variables!
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.cors.CorsConfiguration; // Importar
+import org.springframework.web.cors.CorsConfigurationSource; // Importar
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource; // Importar
+import java.util.Arrays; // Importar
+import java.util.List; // Importar
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // 1. Inyectamos las variables de entorno o usamos valores por defecto
-    // Estos nombres deben coincidir con los definidos en docker-compose.yml y Render.
     @Value("${ADMIN_USERNAME:default_admin}")
     private String adminUser;
 
@@ -25,6 +28,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                // 1. Habilitar CORS aquí
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/api/v1/messages").permitAll()
@@ -36,11 +41,28 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 2. Usamos las variables inyectadas para crear el usuario
+    // 2. Definir la configuración de CORS
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        // ¡OJO! Aquí pones tu dominio de GitHub Pages
+        configuration.setAllowedOrigins(Arrays.asList(
+                "https://923327532.github.io",
+                "http://localhost:4200" // Para pruebas locales
+        ));
+
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
     @Bean
     public UserDetailsService userDetailsService() {
-        System.out.println("Cargando usuario Admin: " + adminUser); // Para debugging en logs
-
         return new InMemoryUserDetailsManager(
                 User.withDefaultPasswordEncoder()
                         .username(adminUser)

@@ -1,11 +1,15 @@
 FROM maven:3.8.5-openjdk-17 AS build
-# Ajusta la ruta si es necesario, pero copiar todo es estándar
+# Copia todo el proyecto al contenedor de build
 COPY . .
+# Compila el proyecto y genera el JAR sin ejecutar tests
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-# ¡IMPORTANTE! Asegúrate de que el nombre del JAR coincida con el que genera tu proyecto
-# Si tu proyecto se llama 'porta', el JAR podría ser 'porta-0.0.1-SNAPSHOT.jar'
+# Copia el JAR generado desde la etapa de build
 COPY --from=build /target/porta-0.0.1-SNAPSHOT.jar app.jar
+
+# Expone el puerto de la aplicación
 EXPOSE 8080
+
+# Comando de inicio
 ENTRYPOINT ["java","-jar","app.jar"]
