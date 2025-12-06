@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # 1. Servicio de la Base de Datos PostgreSQL
+  db:
+    image: postgres:14-alpine
+    container_name: portfolio-postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Lopez2003
+      POSTGRES_DB: portfolio_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # 2. Servicio del Backend (Usará el Dockerfile de la raíz)
+  backend:
+    build: .
+    container_name: portfolio-backend-api
+    ports:
+      - "8080:8080" # El puerto 8080 local mapea al 8080 del contenedor
+    environment:
+      # Conexión a la DB interna de Docker Compose
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/portfolio_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Lopez2003
+      # Credenciales de Admin para Spring Security
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: Lopez2003
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
