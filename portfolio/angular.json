@@ -21,7 +21,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "baseHref": "/portfolio/",
+            "baseHref": "/portfolio-/",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
