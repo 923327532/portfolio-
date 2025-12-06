@@ -4,9 +4,7 @@ server:
 spring:
   # Configuraciones de la Base de Datos
   datasource:
-    # AGREGAR ESTA LÍNEA ES CLAVE:
     driver-class-name: org.postgresql.Driver
-
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
@@ -16,6 +14,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+    # properties:                   <-- Comenta o borra desde aquí
+    #   hibernate:
+    #     dialect: org.hibernate.dialect.PostgreSQLDialect
