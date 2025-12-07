@@ -3,11 +3,9 @@ server:
 
 spring:
   datasource:
-    # Forzamos el driver
     driver-class-name: org.postgresql.Driver
-    # Usamos ambas propiedades por compatibilidad
-    url: ${SPRING_DATASOURCE_URL}
-    jdbc-url: ${SPRING_DATASOURCE_URL}
+    # Aquí es donde hacemos la magia: concatenamos jdbc: con la variable renombrada
+    url: jdbc:${RENDER_DB_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
 
