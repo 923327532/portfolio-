@@ -2,18 +2,17 @@ server:
   port: 8080
 
 spring:
-  # Configuraciones de la Base de Datos
   datasource:
+    # Forzamos el driver
     driver-class-name: org.postgresql.Driver
+    # Usamos ambas propiedades por compatibilidad
     url: ${SPRING_DATASOURCE_URL}
+    jdbc-url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
 
-  # Configuración de JPA (Hibernate)
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
     show-sql: true
-    # properties:                   <-- Comenta o borra desde aquí
-    #   hibernate:
-    #     dialect: org.hibernate.dialect.PostgreSQLDialect
