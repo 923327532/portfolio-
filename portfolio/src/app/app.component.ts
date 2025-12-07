@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterOutlet } from '@angular/router'; // Importar RouterOutlet
+import { RouterOutlet } from '@angular/router';
 import { MessageService } from './services/message.service';
+import { AdminComponent } from './components/admin/admin.component'; // <--- 1. IMPORTAR ADMIN
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ import { MessageService } from './services/message.service';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterOutlet // Añadir RouterOutlet aquí
+    RouterOutlet,
+    AdminComponent // <--- 2. AGREGAR A LOS IMPORTS
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -23,22 +25,22 @@ export class AppComponent implements OnInit {
   tituloPrincipal = "Backend Developer & Cloud Enthusiast";
   subtitulo = "Especialista en Java Spring Boot, Microservicios y Liderazgo de Equipos.";
   ubicacion = "San Borja, Lima - Perú";
-  
+
   // Contacto
   emailContacto = "roberolopezcalle072@gmail.com";
   telefono = "+51 923327532";
   linkedinLink = "https://www.linkedin.com/in/lópez2003";
   whatsappLink = "https://wa.link/1n85eu";
-  
+
   // Assets (imágenes)
-  fotoPerfil = "images/profile.png"; 
-  qrImagen = "images/QR.png"; 
+  fotoPerfil = "images/profile.png";
+  qrImagen = "images/QR.png";
   qrTexto = "Escanéame";
 
   // Perfil profesional (bio larga)
   sobreMiTexto = "Estudiante de 4.º ciclo de la carrera de Diseño y Desarrollo de Software en Tecsup. Con capacidad en solución de problemas, comunicación efectiva y adaptabilidad. Destacado por mi experiencia como Coordinador de Ventas y en organización comercial. Cuento con nivel avanzado en Python, nivel intermedio en Java y conocimientos en bases de datos PostgreSQL. Manejo la metodología ágil Scrum para la gestión y desarrollo de proyectos, además de contar con nivel intermedio en microservicios y Docker. Actualmente me encuentro en constante aprendizaje, fortaleciendo mis habilidades en servicios cloud con AWS.";
 
-  // Experiencia laboral (detallada)
+  // Experiencia laboral
   experiencia = [
     {
       empresa: "Becoll Perú",
@@ -57,7 +59,7 @@ export class AppComponent implements OnInit {
     anio: "2024 - Presente"
   };
 
-  // Certificaciones (lista completa)
+  // Certificaciones
   certificaciones = [
     "Especialización en Backend con Java y Spring Boot (2024–2025)",
     "Certificación en Ciberseguridad por Cisco (2023–2024)",
@@ -66,7 +68,7 @@ export class AppComponent implements OnInit {
     "Certificación como Asesor Comercial Inmobiliario (2022–2023)"
   ];
 
-  // Stack tecnológico (con iconos)
+  // Stack tecnológico
   stackTecnologico = {
     backendCore: [
       { name: 'Java', nivel: 'Intermedio', icon: 'devicon-java-plain colored' },
@@ -96,7 +98,7 @@ export class AppComponent implements OnInit {
     ]
   };
 
-  // Proyectos (incluyendo integrador)
+  // Proyectos
   proyectos = [
     {
       nombre: "Aplicación Bancaria Full Stack",
@@ -116,17 +118,20 @@ export class AppComponent implements OnInit {
     }
   ];
 
-  // Lógica de interfaz (foto giratoria)
   isProfileFlipped = false;
   toggleProfile() {
     this.isProfileFlipped = !this.isProfileFlipped;
   }
 
-  // Contacto
+  // --- 3. LÓGICA PARA EL PANEL ADMIN SECRETO ---
+  showAdmin = false;
+  toggleAdmin() {
+    this.showAdmin = !this.showAdmin;
+  }
+  // ---------------------------------------------
+
   contactoTitulo = "Hablemos Ahora";
   contactoSubtitle = "Estoy disponible para oportunidades. Escríbeme directo para una respuesta rápida.";
-
-  // Formulario de contacto
   contactForm!: FormGroup;
 
   constructor(private messageService: MessageService) { }
@@ -143,8 +148,6 @@ export class AppComponent implements OnInit {
   onSubmit() {
     if (this.contactForm.valid) {
       const formValue = this.contactForm.value;
-      // Caso especial: si no hay un input de asunto visible en el HTML,
-      // se puede asignar un valor por defecto aquí si se detecta que el campo está vacío.
       if (!formValue.subject) {
         formValue.subject = "Contacto desde Portafolio";
       }
@@ -155,11 +158,11 @@ export class AppComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al enviar el mensaje:', error);
-          alert('Hubo un error al enviar tu mensaje. Inténtalo de nuevo más tarde.');
+          alert('Hubo un error al enviar tu mensaje.');
         }
       });
     } else {
-      alert('Por favor, completa todos los campos requeridos y asegúrate de que el email sea válido.');
+      alert('Por favor, completa todos los campos.');
     }
   }
 }

@@ -13,45 +13,56 @@
   <div class="bubble b1" style="left: 95%; animation-delay: 2s"></div>
 </div>
 
-<main class="relative z-10 pb-20">
+<main class="relative z-10 pb-20 font-sans">
   
-  <!-- HEADER / NAVBAR (BARRA DE NAVEGACIÓN) -->
-  <nav class="fixed w-full z-50 top-0 bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-lg">
+  <!-- HEADER / NAVBAR -->
+  <nav class="fixed w-full z-50 top-0 bg-black/80 backdrop-blur-md border-b border-white/5 shadow-2xl transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
       <!-- LOGO -->
-      <div class="text-2xl font-black font-orbitron text-white tracking-widest cursor-pointer">
+      <div class="text-2xl font-black font-orbitron text-white tracking-widest cursor-pointer hover:text-cyan-400 transition">
         RL<span class="text-cyan-400">.DEV</span>
       </div>
       
       <!-- MENÚ ESCRITORIO -->
-      <div class="hidden md:flex gap-8 text-sm font-bold text-gray-300">
-        <a href="#about" class="hover:text-cyan-400 transition">SOBRE MÍ</a>
-        <a href="#stack" class="hover:text-cyan-400 transition">STACK</a>
-        <a href="#experience" class="hover:text-cyan-400 transition">EXPERIENCIA</a>
-        <a href="#contact" class="hover:text-cyan-400 transition">CONTACTO</a>
+      <div class="hidden md:flex gap-8 text-sm font-bold text-gray-300 tracking-wide">
+        <a href="#about" class="hover:text-cyan-400 transition relative group">
+          SOBRE MÍ
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#stack" class="hover:text-cyan-400 transition relative group">
+          STACK
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#experience" class="hover:text-cyan-400 transition relative group">
+          EXPERIENCIA
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#contact" class="hover:text-cyan-400 transition relative group">
+          CONTACTO
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all group-hover:w-full"></span>
+        </a>
       </div>
 
       <!-- BOTÓN CTA -->
-      <a href="#contact" class="px-6 py-2 border border-cyan-500 text-cyan-400 font-bold hover:bg-cyan-500 hover:text-black transition uppercase text-xs tracking-widest rounded">
+      <a href="#contact" class="px-6 py-2 border border-cyan-500/50 text-cyan-400 font-bold hover:bg-cyan-500 hover:text-black transition uppercase text-xs tracking-widest rounded shadow-[0_0_10px_rgba(6,182,212,0.2)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]">
         Contratar
       </a>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
-  <section id="about" class="min-h-screen flex flex-col md:flex-row items-center justify-center px-6 gap-16 pt-24 max-w-7xl mx-auto">
-    <div class="flex-1 text-center md:text-left order-2 md:order-1">
+  <section id="about" class="min-h-screen flex flex-col md:flex-row items-center justify-center px-6 gap-16 pt-32 max-w-7xl mx-auto">
+    <div class="flex-1 text-center md:text-left order-2 md:order-1 animate-fade-in-up">
       <span class="text-cyan-400 font-bold tracking-[0.3em] text-sm mb-4 block uppercase">{{ tituloPrincipal }}</span>
-      <h1 class="text-5xl md:text-7xl font-black font-orbitron leading-none mb-6 text-white">
-        ROBERTO <br> LÓPEZ
+      <h1 class="text-5xl md:text-7xl font-black font-orbitron leading-none mb-6 text-white text-shadow-glow">
+        ROBERTO <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">LÓPEZ</span>
       </h1>
       <p class="text-purple-300 font-bold text-lg mb-6">{{ subtitulo }}</p>
-      <p class="text-gray-300 text-base mb-10 max-w-lg leading-relaxed border-l-4 border-cyan-500 pl-6">
+      <p class="text-gray-400 text-base mb-10 max-w-lg leading-relaxed border-l-4 border-cyan-500 pl-6">
         {{ sobreMiTexto }}
       </p>
       <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-        <a [href]="whatsappLink" target="_blank" class="btn-whatsapp">
-          <!-- ICONO WHATSAPP SVG REAL -->
+        <a [href]="whatsappLink" target="_blank" class="btn-whatsapp shadow-lg hover:shadow-green-500/30 transform hover:-translate-y-1 transition">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.472 14.382C17.112 14.202 15.344 13.332 15.013 13.217C14.682 13.102 14.441 13.045 14.2 13.405C13.96 13.765 13.274 14.573 13.064 14.817C12.853 15.061 12.643 15.091 12.283 14.911C11.923 14.731 10.762 14.35 9.386 13.123C8.296 12.151 7.56 10.952 7.349 10.591C7.139 10.231 7.327 10.036 7.507 9.856C7.668 9.695 7.865 9.436 8.045 9.227C8.225 9.017 8.285 8.867 8.405 8.627C8.525 8.387 8.465 8.177 8.375 7.997C8.285 7.817 7.594 6.116 7.309 5.432C7.025 4.768 6.74 4.857 6.544 4.857C6.363 4.852 6.153 4.852 5.943 4.852C5.733 4.852 5.387 4.931 5.102 5.246C4.817 5.561 4.006 6.311 4.006 7.841C4.006 9.371 5.117 10.856 5.267 11.066C5.417 11.276 7.525 14.531 10.755 15.926C11.524 16.258 12.125 16.457 12.591 16.605C13.477 16.886 14.287 16.846 14.926 16.751C15.636 16.645 17.112 15.857 17.417 14.987C17.722 14.117 17.722 13.367 17.632 13.217C17.542 13.067 17.302 12.982 16.942 12.802H17.472V14.382ZM12.003 2C6.48 2 2 6.48 2 12C2 13.765 2.458 15.427 3.269 16.883L2 21.523L6.743 20.279C8.321 21.384 10.119 22 12.003 22C17.525 22 22.006 17.519 22.006 12C22.006 6.48 17.525 2 12.003 2Z" fill="white"/>
           </svg>
@@ -61,96 +72,143 @@
     </div>
     <div class="flex-1 flex justify-center order-1 md:order-2">
       <div class="profile-glow">
-        <img [src]="fotoPerfil" class="profile-img" alt="Roberto Lopez">
+        <img [src]="fotoPerfil" class="profile-img border-4 border-cyan-500/30" alt="Roberto Lopez">
       </div>
     </div>
   </section>
+
 
   <!-- STACK -->
   <section id="stack" class="py-20 px-6 max-w-7xl mx-auto">
     <h2 class="text-4xl font-bold font-orbitron mb-16 text-center text-white">ARSENAL <span class="text-purple-500">TÉCNICO</span></h2>
     <div class="grid md:grid-cols-3 gap-8">
       <!-- Backend -->
-      <div class="glass-card">
-        <h3 class="text-xl font-bold text-cyan-400 mb-6 border-b border-white/10 pb-2">BACKEND</h3>
+      <div class="glass-card transform hover:scale-105 transition duration-500">
+        <h3 class="text-xl font-bold text-cyan-400 mb-6 border-b border-white/10 pb-2">BACKEND CORE</h3>
         <div class="space-y-4">
           @for (tech of stackTecnologico.backendCore; track tech.name) {
             <div class="flex items-center gap-4 p-2 hover:bg-white/5 rounded transition">
-              <i [class]="tech.icon + ' text-4xl'"></i>
+              <i [class]="tech.icon + ' text-4xl drop-shadow-lg'"></i>
               <div><p class="font-bold text-white">{{ tech.name }}</p><p class="text-xs text-gray-400">{{ tech.nivel }}</p></div>
             </div>
           }
         </div>
       </div>
       <!-- Cloud -->
-      <div class="glass-card">
+      <div class="glass-card transform hover:scale-105 transition duration-500">
         <h3 class="text-xl font-bold text-purple-400 mb-6 border-b border-white/10 pb-2">CLOUD & DEVOPS</h3>
         <div class="space-y-4">
           @for (tech of stackTecnologico.frameworks; track tech.name) {
             <div class="flex items-center gap-4 p-2 hover:bg-white/5 rounded transition">
-              <i [class]="tech.icon + ' text-4xl'"></i>
+              <i [class]="tech.icon + ' text-4xl drop-shadow-lg'"></i>
               <div><p class="font-bold text-white">{{ tech.name }}</p><p class="text-xs text-gray-400">{{ tech.nivel }}</p></div>
             </div>
           }
         </div>
       </div>
       <!-- Front -->
-      <div class="glass-card">
+      <div class="glass-card transform hover:scale-105 transition duration-500">
         <h3 class="text-xl font-bold text-pink-400 mb-6 border-b border-white/10 pb-2">FRONTEND</h3>
         <div class="flex flex-wrap gap-3">
           @for (tech of stackTecnologico.frontend; track tech.name) {
-            <span class="px-3 py-2 rounded bg-black/40 border border-white/10 text-sm flex items-center gap-2 hover:border-pink-500 transition"><i [class]="tech.icon"></i> {{ tech.name }}</span>
+            <span class="px-3 py-2 rounded bg-black/40 border border-white/10 text-sm flex items-center gap-2 hover:border-pink-500 transition hover:shadow-[0_0_10px_rgba(236,72,153,0.3)]"><i [class]="tech.icon"></i> {{ tech.name }}</span>
           }
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CERTIFICACIONES (GRID PRODUCTO) -->
+
+  <!-- CERTIFICACIONES (CON IMÁGENES REFERENCIALES) -->
   <section class="py-20 px-6 max-w-7xl mx-auto">
     <h2 class="text-3xl font-bold font-orbitron mb-12 text-white text-center">CERTIFICACIONES</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      @for (cert of certificaciones; track cert) {
-        <div class="product-card group cursor-default">
-          <div class="product-image-box">
-            <span class="product-badge">Certificación</span>
-            <i class="fas fa-award product-icon"></i> <!-- Icono genérico para certificaciones -->
-          </div>
-          <div class="product-info">
-            <div>
-              <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition mb-2 leading-tight">{{ cert }}</h3>
-              <p class="text-xs text-gray-400">Emitido: (desconocido)</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center">
-              <span class="text-[10px] text-green-400 uppercase tracking-widest font-bold">● Validado</span>
-            </div>
+      
+      <!-- ITEM 1: JAVA -->
+      <div class="product-card group cursor-default">
+        <div class="product-image-box bg-gradient-to-br from-orange-900/40 to-black">
+          <span class="product-badge">Especialización</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/1200px-Java_programming_language_logo.svg.png" class="w-24 h-24 object-contain opacity-80 group-hover:opacity-100 transition duration-500 drop-shadow-[0_0_15px_rgba(255,100,0,0.5)]">
+        </div>
+        <div class="product-info">
+          <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition mb-2 leading-tight">Backend con Java y Spring Boot</h3>
+          <p class="text-xs text-gray-400">2024–2025</p>
+          <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center">
+            <span class="text-[10px] text-green-400 uppercase tracking-widest font-bold">● Validado</span>
           </div>
         </div>
-      }
+      </div>
+
+      <!-- ITEM 2: CISCO -->
+      <div class="product-card group cursor-default">
+        <div class="product-image-box bg-gradient-to-br from-blue-900/40 to-black">
+          <span class="product-badge">Ciberseguridad</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cisco_logo.svg/2560px-Cisco_logo.svg.png" class="w-24 h-24 object-contain opacity-80 group-hover:opacity-100 transition duration-500 drop-shadow-[0_0_15px_rgba(0,100,255,0.5)]">
+        </div>
+        <div class="product-info">
+          <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition mb-2 leading-tight">Certificación en Ciberseguridad</h3>
+          <p class="text-xs text-gray-400">Cisco (2023–2024)</p>
+          <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center">
+            <span class="text-[10px] text-green-400 uppercase tracking-widest font-bold">● Validado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITEM 3: MONGODB -->
+      <div class="product-card group cursor-default">
+        <div class="product-image-box bg-gradient-to-br from-green-900/40 to-black">
+          <span class="product-badge">Base de Datos</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg" class="w-32 h-32 object-contain opacity-80 group-hover:opacity-100 transition duration-500 drop-shadow-[0_0_15px_rgba(0,255,100,0.5)]">
+        </div>
+        <div class="product-info">
+          <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition mb-2 leading-tight">Certificación en MongoDB</h3>
+          <p class="text-xs text-gray-400">2025</p>
+          <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center">
+            <span class="text-[10px] text-green-400 uppercase tracking-widest font-bold">● Validado</span>
+          </div>
+        </div>
+      </div>
+
+       <!-- ITEM 4: MARKETING -->
+       <div class="product-card group cursor-default">
+        <div class="product-image-box bg-gradient-to-br from-purple-900/40 to-black">
+          <span class="product-badge">Marketing</span>
+          <img src="https://cdn-icons-png.flaticon.com/512/1998/1998087.png" class="w-24 h-24 object-contain opacity-80 group-hover:opacity-100 transition duration-500 invert">
+        </div>
+        <div class="product-info">
+          <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition mb-2 leading-tight">Publicidad y Marketing Digital</h3>
+          <p class="text-xs text-gray-400">2023–2024</p>
+          <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center">
+            <span class="text-[10px] text-green-400 uppercase tracking-widest font-bold">● Validado</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
+
 
   <!-- EXPERIENCIA & PROYECTOS -->
   <section id="experience" class="py-20 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
     <div>
       <h2 class="text-3xl font-bold font-orbitron mb-8 text-white">TRAYECTORIA</h2>
       @for (exp of experiencia; track exp.empresa) {
-        <div class="glass-card border-l-4 border-l-cyan-500 mb-6">
+        <div class="glass-card border-l-4 border-l-cyan-500 mb-6 hover:translate-x-2 transition duration-300">
           <h3 class="text-2xl font-bold text-white">{{ exp.empresa }}</h3>
           <p class="text-cyan-400 font-bold mb-2">{{ exp.cargo }}</p>
           <p class="text-xs text-gray-400 mb-4">{{ exp.periodo }}</p>
-          <p class="text-gray-300 text-sm">{{ exp.logro }}</p>
+          <p class="text-gray-300 text-sm leading-relaxed">{{ exp.logro }}</p>
         </div>
       }
     </div>
     <div>
       <h2 class="text-3xl font-bold font-orbitron mb-8 text-white md:text-right">PROYECTOS</h2>
       @for (p of proyectos; track p.nombre) {
-        <div class="glass-card mb-6 group relative overflow-hidden">
+        <div class="glass-card mb-6 group relative overflow-hidden hover:shadow-[0_0_30px_rgba(100,0,255,0.2)] transition duration-500">
           <div class="absolute right-4 top-4 text-8xl opacity-10 group-hover:opacity-20 transition rotate-12"><i [class]="p.bgIcon"></i></div>
           <h3 class="text-2xl font-bold text-white group-hover:text-cyan-400 transition">{{ p.nombre }}</h3>
-          <p class="text-xs text-purple-400 font-bold mb-3">{{ p.rol }}</p>
-          <p class="text-gray-300 text-sm mb-4">{{ p.descripcion }}</p>
+          <p class="text-xs text-purple-400 font-bold mb-3 uppercase tracking-wider">{{ p.rol }}</p>
+          <p class="text-gray-300 text-sm mb-4 leading-relaxed">{{ p.descripcion }}</p>
           <div class="flex flex-wrap gap-2 relative z-10">
             @for (t of p.tech; track t) { <span class="px-2 py-1 bg-black rounded text-[10px] font-mono text-gray-400 border border-gray-800">{{ t }}</span> }
           </div>
@@ -159,85 +217,120 @@
     </div>
   </section>
 
-  <!-- CONTACTO -->
-  <section id="contact" class="py-24 px-6 text-center max-w-4xl mx-auto">
-    <div class="glass-card p-12">
-      <h2 class="text-4xl font-bold font-orbitron mb-6 text-white">{{ contactoTitulo }}</h2>
-      <p class="text-gray-400 mb-10 max-w-xl mx-auto">
-        {{ contactoSubtitle }}
-      </p>
 
-      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="flex flex-col md:flex-row justify-center items-center gap-12">
-        <!-- CAMPO NOMBRE -->
-        <div class="w-full">
-          <label for="name" class="sr-only">Nombre</label>
-          <input formControlName="name" type="text" id="name" placeholder="Tu Nombre" 
-                 class="w-full p-3 rounded-lg bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:ring-2 focus:ring-cyan-500 focus:border-transparent mb-4">
-          @if (contactForm.get('name')?.invalid && (contactForm.get('name')?.dirty || contactForm.get('name')?.touched)) {
-            <div class="text-red-500 text-sm">El nombre es obligatorio.</div>
-          }
-        </div>
+  <!-- CONTACTO (DISEÑO DEFINITIVO CON ICONOS ELEGANTES) -->
+  <section id="contact" class="py-24 px-6 max-w-5xl mx-auto">
+    <div class="glass-card p-8 md:p-16 relative overflow-hidden">
+      <!-- Decoración de fondo -->
+      <div class="absolute -top-20 -right-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
 
-        <!-- CAMPO EMAIL -->
-        <div class="w-full">
-          <label for="email" class="sr-only">Email</label>
-          <input formControlName="email" type="email" id="email" placeholder="Tu Email" 
-                 class="w-full p-3 rounded-lg bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:ring-2 focus:ring-cyan-500 focus:border-transparent mb-4">
-          @if (contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)) {
-            <div class="text-red-500 text-sm">
-              @if (contactForm.get('email')?.errors?.['required']) { Email es obligatorio. }
-              @if (contactForm.get('email')?.errors?.['email']) { Email inválido. }
+      <div class="relative z-10 grid md:grid-cols-2 gap-16">
+        
+        <!-- Columna Izquierda: Texto -->
+        <div class="text-left">
+          <h2 class="text-4xl font-bold font-orbitron mb-6 text-white leading-tight">VAMOS A <br> <span class="text-cyan-400">CREAR ALGO</span></h2>
+          <p class="text-gray-400 mb-8 leading-relaxed">
+            ¿Tienes un proyecto en mente? Estoy listo para aportar soluciones escalables y seguras.
+          </p>
+          
+          <!-- EMAIL (ICONO ELEGANTE) -->
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-full bg-cyan-900/30 border border-cyan-500/50 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.3)]">
+              <i class="fas fa-user-circle text-2xl text-cyan-400"></i>
             </div>
-          }
+            <div>
+              <p class="text-xs text-gray-500 uppercase font-bold tracking-wider">Email</p>
+              <p class="text-white font-medium hover:text-cyan-400 transition cursor-pointer select-all">{{ emailContacto }}</p>
+            </div>
+          </div>
+
+          <!-- TELÉFONO (ICONO ELEGANTE) -->
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-cyan-900/30 border border-cyan-500/50 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.3)]">
+              <i class="fas fa-phone-alt text-xl text-cyan-400"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 uppercase font-bold tracking-wider">Teléfono</p>
+              <p class="text-white font-medium hover:text-cyan-400 transition cursor-pointer select-all">{{ telefono }}</p>
+            </div>
+          </div>
         </div>
 
-        <!-- CAMPO ASUNTO (OCULTO SI ES NECESARIO) -->
-        <!-- Si no quieres mostrar el campo 'subject' en el HTML, puedes eliminar este div.
-             El componente TypeScript asignará un valor por defecto si está vacío. -->
-        <div class="w-full">
-          <label for="subject" class="sr-only">Asunto</label>
-          <input formControlName="subject" type="text" id="subject" placeholder="Asunto" 
-                 class="w-full p-3 rounded-lg bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:ring-2 focus:ring-cyan-500 focus:border-transparent mb-4">
-          @if (contactForm.get('subject')?.invalid && (contactForm.get('subject')?.dirty || contactForm.get('subject')?.touched)) {
-            <div class="text-red-500 text-sm">El asunto es obligatorio.</div>
-          }
-        </div>
+        <!-- Columna Derecha: FORMULARIO MODERNO -->
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          
+          <div class="relative group">
+            <input formControlName="name" type="text" id="name" required
+                   class="peer w-full bg-transparent border-b-2 border-gray-600 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors placeholder-transparent">
+            <label for="name" class="absolute left-0 -top-3.5 text-sm text-cyan-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-cyan-400 cursor-text">
+              Tu Nombre
+            </label>
+            <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-red-500 text-xs mt-1">Requerido</div>
+          </div>
 
-        <!-- CAMPO MENSAJE -->
-        <div class="w-full">
-          <label for="content" class="sr-only">Mensaje</label>
-          <textarea formControlName="content" id="content" placeholder="Tu Mensaje" rows="5" 
-                    class="w-full p-3 rounded-lg bg-black/40 border border-white/10 text-white placeholder-gray-500 focus:ring-2 focus:ring-cyan-500 focus:border-transparent mb-6"></textarea>
-          @if (contactForm.get('content')?.invalid && (contactForm.get('content')?.dirty || contactForm.get('content')?.touched)) {
-            <div class="text-red-500 text-sm">El mensaje es obligatorio.</div>
-          }
-        </div>
+          <div class="relative group">
+            <input formControlName="email" type="email" id="email" required
+                   class="peer w-full bg-transparent border-b-2 border-gray-600 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors placeholder-transparent">
+            <label for="email" class="absolute left-0 -top-3.5 text-sm text-cyan-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-cyan-400 cursor-text">
+              Tu Email
+            </label>
+             <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="text-red-500 text-xs mt-1">Email inválido</div>
+          </div>
 
-        <!-- BOTÓN ENVIAR -->
-        <button type="submit" [disabled]="contactForm.invalid" 
-                class="group relative inline-flex items-center justify-center px-10 py-4 font-bold text-black transition-all duration-300 bg-[#00ff88] rounded-xl shadow-lg hover:shadow-[#00ff88]/50 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
-          ENVIAR MENSAJE
-        </button>
-      </form>
+          <div class="relative group">
+            <input formControlName="subject" type="text" id="subject"
+                   class="peer w-full bg-transparent border-b-2 border-gray-600 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors placeholder-transparent">
+            <label for="subject" class="absolute left-0 -top-3.5 text-sm text-cyan-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-cyan-400 cursor-text">
+              Asunto (Opcional)
+            </label>
+          </div>
 
-      <div class="flex flex-col md:flex-row justify-center items-center gap-12 mt-10">
-        <a [href]="whatsappLink" target="_blank" class="btn-whatsapp text-xl px-10 py-5">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382C17.112 14.202 15.344 13.332 15.013 13.217C14.682 13.102 14.441 13.045 14.2 13.405C13.96 13.765 13.274 14.573 13.064 14.817C12.853 15.061 12.643 15.091 12.283 14.911C11.923 14.731 10.762 14.35 9.386 13.123C8.296 12.151 7.56 10.952 7.349 10.591C7.139 10.231 7.327 10.036 7.507 9.856C7.668 9.695 7.865 9.436 8.045 9.227C8.225 9.017 8.285 8.867 8.405 8.627C8.525 8.387 8.465 8.177 8.375 7.997C8.285 7.817 7.594 6.116 7.309 5.432C7.025 4.768 6.74 4.857 6.544 4.857C6.363 4.852 6.153 4.852 5.943 4.852C5.733 4.852 5.387 4.931 5.102 5.246C4.817 5.561 4.006 6.311 4.006 7.841C4.006 9.371 5.117 10.856 5.267 11.066C5.417 11.276 7.525 14.531 10.755 15.926C11.524 16.258 12.125 16.457 12.591 16.605C13.477 16.886 14.287 16.846 14.926 16.751C15.636 16.645 17.112 15.857 17.417 14.987C17.722 14.117 17.722 13.367 17.632 13.217C17.542 13.067 17.302 12.982 16.942 12.802H17.472V14.382ZM12.003 2C6.48 2 2 6.48 2 12C2 13.765 2.458 15.427 3.269 16.883L2 21.523L6.743 20.279C8.321 21.384 10.119 22 12.003 22C17.525 22 22.006 17.519 22.006 12C22.006 6.48 17.525 2 12.003 2Z" fill="white"/>
-          </svg>
-          WhatsApp
-        </a>
-        <div class="flex flex-col items-center group">
-          <div class="bg-white p-3 rounded-xl transform group-hover:scale-105 transition duration-300"><img [src]="qrImagen" class="w-40 h-40" alt="QR"></div>
-          <p class="text-cyan-500 mt-4 font-bold tracking-widest text-sm">{{ qrTexto }}</p>
-        </div>
+          <div class="relative group">
+            <textarea formControlName="content" id="content" rows="4" required
+                      class="peer w-full bg-transparent border-b-2 border-gray-600 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors placeholder-transparent resize-none"></textarea>
+            <label for="content" class="absolute left-0 -top-3.5 text-sm text-cyan-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-cyan-400 cursor-text">
+              Tu Mensaje
+            </label>
+             <div *ngIf="contactForm.get('content')?.invalid && contactForm.get('content')?.touched" class="text-red-500 text-xs mt-1">Escribe algo...</div>
+          </div>
+          
+          <button type="submit" [disabled]="contactForm.invalid" 
+                  class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-cyan-500/50 transform hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+            ENVIAR PROPUESTA 🚀
+          </button>
+        </form>
+
       </div>
       
-      <div class="mt-10 pt-6 border-t border-white/10 text-gray-500 text-sm">
-        Roberto López © 2025. Desarrollado con Angular & TailwindCSS.
+      <div class="mt-16 pt-8 border-t border-white/5 text-center">
+        <p class="text-gray-500 text-sm">Roberto López © 2025. Desarrollado con Angular & Spring Boot.</p>
       </div>
     </div>
   </section>
 </main>
+
+<!-- BOTÓN ADMIN -->
+<button (click)="toggleAdmin()" 
+        style="position: fixed; bottom: 20px; left: 20px; z-index: 99999; padding: 12px; background-color: #111; color: #333; border-radius: 50%; border: 1px solid #333; font-weight: bold; cursor: pointer; transition: 0.3s;"
+        onmouseover="this.style.color='red'; this.style.borderColor='red'"
+        onmouseout="this.style.color='#333'; this.style.borderColor='#333'">
+  ⚙️
+</button>
+
+<!-- VENTANA DEL ADMIN -->
+<div *ngIf="showAdmin" 
+     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100000; background-color: rgba(0,0,0,0.95); overflow-y: auto; padding: 20px; display: flex; flex-direction: column;">
+  
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; max-width: 1000px; margin: 0 auto; width: 100%;">
+    <h2 style="color: #00ff88; font-size: 2rem; font-weight: bold; font-family: 'Orbitron', sans-serif;">PANEL SECRETO</h2>
+    <button (click)="toggleAdmin()" style="background: red; color: white; padding: 8px 16px; border: none; font-weight: bold; cursor: pointer; border-radius: 4px;">CERRAR X</button>
+  </div>
+
+  <div style="max-width: 1000px; margin: 0 auto; width: 100%;">
+    <app-admin></app-admin>
+  </div>
+
+</div>
 
 <router-outlet></router-outlet>
