@@ -9,11 +9,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.cors.CorsConfiguration; // Importar
-import org.springframework.web.cors.CorsConfigurationSource; // Importar
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource; // Importar
-import java.util.Arrays; // Importar
-import java.util.List; // Importar
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -28,33 +29,40 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                // 1. Habilitar CORS aquí
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/api/v1/messages").permitAll()
-                        .requestMatchers("/api/v1/admin/**").authenticated()
-                        .anyRequest().permitAll()
-                )
-                .httpBasic(httpBasic -> {});
+            // 1. Activamos CORS con la configuración definida abajo
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            // 2. Desactivamos CSRF (necesario para que funcionen los POST desde otro dominio)
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(authz -> authz
+                // Permite acceso libre para enviar mensajes
+                .requestMatchers("/api/v1/messages").permitAll()
+                // Protege las rutas de administrador
+                .requestMatchers("/api/v1/admin/**").authenticated()
+                // Permite cualquier otra cosa (útil para pruebas, luego se puede restringir)
+                .anyRequest().permitAll()
+            )
+            .httpBasic(httpBasic -> {});
 
         return http.build();
     }
 
-    // 2. Definir la configuración de CORS
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // ¡OJO! Aquí pones tu dominio de GitHub Pages
-        configuration.setAllowedOrigins(Arrays.asList(
-                "https://923327532.github.io",
-                "http://localhost:4200" // Para pruebas locales
-        ));
-
+        // --- CONFIGURACIÓN CORS INFALIBLE ---
+        // Usamos "*" para permitir cualquier origen (GitHub Pages, Localhost, etc.)
+        configuration.setAllowedOrigins(List.of("*"));
+        
+        // Permitimos todos los métodos HTTP comunes
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        
+        // Permitimos todos los encabezados
         configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
+        
+        // IMPORTANTE: Al usar "*" en origins, allowCredentials DEBE ser false.
+        // Esto está bien para el formulario de contacto público.
+        configuration.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
@@ -64,11 +72,11 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return new InMemoryUserDetailsManager(
-                User.withDefaultPasswordEncoder()
-                        .username(adminUser)
-                        .password(adminPass)
-                        .roles("ADMIN")
-                        .build()
+            User.withDefaultPasswordEncoder()
+                .username(adminUser)
+                .password(adminPass)
+                .roles("ADMIN")
+                .build()
         );
     }
 }
