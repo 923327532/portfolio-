@@ -4,10 +4,12 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    # Aquí es donde hacemos la magia: concatenamos jdbc: con la variable renombrada
-    url: jdbc:${RENDER_DB_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    # URL Interna completa con puerto 5432
+    url: jdbc:postgresql://dpg-d4qafl15pdvs738ktpa0-a:5432/portfolio_db_b26b
+
+    # Credenciales directas
+    username: portfolio_db_b26b_user
+    password: Lajkj0L1hgYO3fMDsSRUNEUJhv23L42e
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
